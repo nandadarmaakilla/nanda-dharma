@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Reset dan Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Navbar */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 50px;
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            animation: fadeInDown 1s ease;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #6c63ff;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #6c63ff;
+        }
+
+        .search-icon {
+            font-size: 18px;
+            cursor: pointer;
+        }
+
+        .menu-toggle {
+            display: none;
+            cursor: pointer;
+            font-size: 24px;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 0 50px;
+            margin-top: 70px;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            max-width: 600px;
+            z-index: 2;
+            animation: slideInLeft 1s ease;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .hero h2 {
+            font-size: 24px;
+            color: #6c63ff;
+            margin-bottom: 30px;
+            font-weight: 500;
+        }
+
+        .hero p {
+            font-size: 18px;
+            margin-bottom: 30px;
+            color: #555;
+        }
+
+        .hero-image {
+            position: absolute;
+            right: 50px;
+            width: 500px;
+            height: 500px;
+            border-radius: 50%;
+            background-color: #6c63ff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            animation: zoomIn 1.5s ease;
+        }
+
+        .hero-image img {
+            width: 90%;
+            height: 90%;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid white;
+        }
+
+        /* About Section */
+        .about {
+            padding: 100px 50px;
+            background-color: white;
+            animation: fadeIn 1.5s ease;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            font-size: 36px;
+            color: #333;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: #6c63ff;
+        }
+
+        .about-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .about-text {
+            flex: 1;
+            padding-right: 50px;
+        }
+
+        .about-text h3 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: #6c63ff;
+        }
+
+        .about-image {
+            flex: 1;
+            text-align: center;
+        }
+
+        .about-image img {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid #6c63ff;
+            box-shadow: 0 10px 30px rgba(108, 99, 255, 0.2);
+            transition: transform 0.5s;
+        }
+
+        .about-image img:hover {
+            transform: scale(1.05);
+        }
+
+        /* Skills Section */
+        .skills {
+            padding: 100px 50px;
+            background-color: #f8f9fa;
+        }
+
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            gap: 30px;
+        }
+
+        .skill-card {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            width: 250px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .skill-icon {
+            font-size: 50px;
+            color: #6c63ff;
+            margin-bottom: 20px;
+        }
+
+        .skill-card h3 {
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 100px 50px;
+            background-color: white;
+            text-align: center;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
+            gap: 20px;
+        }
+
+        .social-link {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background-color: #6c63ff;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+            text-decoration: none;
+            transition: transform 0.3s, background-color 0.3s;
+        }
+
+        .social-link:hover {
+            transform: scale(1.1);
+        }
+
+        .facebook:hover {
+            background-color: #3b5998;
+        }
+
+        .twitter:hover {
+            background-color: #1da1f2;
+        }
+
+        .instagram:hover {
+            background: linear-gradient(45deg, #405de6, #5851db, #833ab4, #c13584, #e1306c, #fd1d1d);
+        }
+
+        .whatsapp:hover {
+            background-color: #25d366;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+        /* Animations */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes zoomIn {
+            from {
+                opacity: 0;
+                transform: scale(0.5);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .skill-img {
+            max-width: 100px;
+            max-height: 100px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .hero-image {
+                width: 400px;
+                height: 400px;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .hero {
+                flex-direction: column;
+                text-align: center;
+                padding-top: 100px;
+                height: auto;
+                padding-bottom: 50px;
+            }
+
+            .hero-content {
+                max-width: 100%;
+                margin-bottom: 50px;
+            }
+
+            .hero-image {
+                position: relative;
+                right: auto;
+                margin-top: 50px;
+                width: 300px;
+                height: 300px;
+            }
+
+            .about-content {
+                flex-direction: column;
+            }
+
+            .about-text {
+                padding-right: 0;
+                margin-bottom: 50px;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 15px 20px;
+            }
+
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background-color: white;
+                flex-direction: column;
+                align-items: center;
+                padding: 20px 0;
+                box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-links li {
+                margin: 10px 0;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .hero {
+                padding: 80px 20px 50px;
+            }
+
+            .hero h1 {
+                font-size: 36px;
+            }
+
+            .hero h2 {
+                font-size: 20px;
+            }
+
+            .hero p {
+                font-size: 16px;
+            }
+
+            .about, .skills, .contact {
+                padding: 70px 20px;
+            }
+
+            .section-title {
+                font-size: 28px;
+                margin-bottom: 30px;
+            }
+
+            .about-text h3 {
+                font-size: 24px;
+            }
+
+            .about-image img {
+                width: 250px;
+                height: 250px;
+            }
+
+            .skill-card {
+                width: 100%;
+                max-width: 300px;
+            }
+
+            .social-link {
+                width: 50px;
+                height: 50px;
+                font-size: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 28px;
+            }
+
+            .hero h2 {
+                font-size: 18px;
+            }
+
+            .hero-image {
+                width: 250px;
+                height: 250px;
+            }
+
+            .about-image img {
+                width: 200px;
+                height: 200px;
+            }
+
+            .social-links {
+                gap: 15px;
+            }
+
+            .social-link {
+                width: 45px;
+                height: 45px;
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="menu-toggle">
+            <i class="fas fa-bars"></i>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+        <div class="search-icon">
+            <i class="fas fa-search"></i>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>Nanda Dharma Aqillah</h1>
+            <h2>Runners</h2>
+            <p>Saya Nanda Dharma Aqillah, pelari asal medan mau melampirkan data diri saya, jangan lupa di baca yaaa, arigatooo!!!</p>
+            <div class="social-links">
+                <a href="https://www.facebook.com/profile.php?id=100037212134918" class="social-link facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="social-link twitter"><i class="fab fa-twitter"></i></a>
+                <a href="https://www.instagram.com/nandee_.24/" class="social-link instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="social-link whatsapp"><i class="fab fa-whatsapp"></i></a>
+            </div>
+        </div>
+        <div class="hero-image">
+            <!-- Replace with your actual image URL -->
+            <img src="c:\Users\ACER\Pictures\WhatsApp Image 2025-05-26 at 13.39.34_8734f497.jpg" alt="Nanda Dharma Aqillah">
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <h2 class="section-title">Tentang Saya</h2>
+        <div class="about-content">
+            <div class="about-text">
+                <h3>Pelari Medan</h3>
+                <p>Halo semuanyaa, saya Nanda Dharma Aqillah, saya berasal dari negara kesatuan belawan city</p>
+                <p>Saya lahir di medan, dan saat ini berusia 18+</p>
+                <p>Saya memiliki kemampuan lari jarak 5km sampai dengan half marathon 21km</p>
+                <p>Saya memiliki moto hidup yaitu Berani mencoba karena setiap langkah itu bukti kita masih diberi kesempatan menjadi lebih baik lagi dari hari kemarin</p>
+            </div>
+            <div class="about-image">
+                <!-- Replace with your actual image URL -->
+                <img src="c:\Users\ACER\Downloads\WhatsApp Image 2025-05-26 at 13.44.14_11598b64.jpg" alt="Nanda Dharma Aqillah">
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section class="skills" id="skills">
+        <h2 class="section-title">Achievements and Skill</h2>
+        <div class="skills-container">
+            <div class="skill-card">
+                <div class="skill-icon">
+                  <img class="skill-img" src="https://tse2.mm.bing.net/th?id=OIP.ChkrLsZWehE5vE-sjr_XiAHaHa&pid=Api&P=0&h=180" alt="Mountain Running">
+                </div>
+                <h3>Pelari Gunung</h3>
+                <p>Lari lintas gunung jarak 6km</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">
+                    <img class="skill-img" src="https://static.vecteezy.com/system/resources/previews/007/933/755/original/karate-logo-illustration-free-vector.jpg" alt="Karate">
+                </div>
+                <h3>Karate</h3>
+                <p>Mencapai tingkatan sabuk hitam</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">
+                  <img class="skill-img" src="https://cdn.pixabay.com/photo/2014/04/03/11/07/running-311805_640.png" alt="Marathon">
+                </div>
+                <h3>Pelari Marathon</h3>
+                <p>Jarak 5km<br>Jarak 10km</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">
+                  <img class="skill-img" src="https://tse1.mm.bing.net/th?id=OIP.-Qh6tTuszfbCyWgQrF1uhgHaHa&pid=Api&P=0&h=180" alt="Swimming">
+                </div>
+                <h3>Berenang</h3>
+                <p>Perenang jarak 100 meter</p>
+            </div>
+             <div class="skill-card">
+                <div class="skill-icon">
+                  <img class="skill-img" src="http://pluspng.com/img-png/java-png-java-icon-1600.png" alt="Java">
+                </div>
+                <h3>Java</h3>
+                <p>Sedikit pemahaman tentang java</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">
+                  <img class="skill-img" src="https://tse2.mm.bing.net/th?id=OIP.ZXnb5Jwo78R7v0c1_eZ85QHaHa&pid=Api&P=0&h=180" alt="HTML">
+                </div>
+                <h3>HTML</h3>
+                <p>Sedang mempelajari html</p>
+            </div>
+        </div>
+        
+        <h2 class="section-title" style="margin-top: 50px;">Project</h2>
+        <div class="skills-container">
+             <div class="skill-card">
+                <div class="skill-icon">
+                  <!-- Replace with your actual GIF URL -->
+                  <img class="skill-img" src="c:\Users\ACER\Downloads\Jawa jawa jawa nanda.gif" alt="Java Project">
+                </div>
+                <h3>Membuat akun bank dari java</h3>
+                <p>Membuat akun bank melalui java</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <h2 class="section-title">Get In Touch</h2>
+        <p>Feel free to reach out for collaborations or just a friendly hello</p>
+        <div class="social-links">
+            <a href="https://www.facebook.com/profile.php?id=100037212134918" class="social-link facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="social-link twitter"><i class="fab fa-twitter"></i></a>
+            <a href="https://www.instagram.com/nandee_.24/" class="social-link instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="social-link whatsapp"><i class="fab fa-whatsapp"></i></a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2023 Nanda Dharma Aqillah Portfolio. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
+        
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+        
+        // Close menu when clicking on a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Animation on scroll
+        const animateOnScroll = () => {
+            const elements = document.querySelectorAll('.about, .skills, .contact');
+            
+            elements.forEach(element => {
+                const elementPosition = element.getBoundingClientRect().top;
+                const screenPosition = window.innerHeight / 1.3;
+                
+                if (elementPosition < screenPosition) {
+                    element.style.animation = 'fadeIn 1s ease forwards';
+                }
+            });
+        };
+
+        window.addEventListener('scroll', animateOnScroll);
+        window.addEventListener('load', animateOnScroll);
+    </script>
+</body>
+</html>
